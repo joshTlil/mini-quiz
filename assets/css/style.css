@@ -17,3 +17,20 @@ body{
     border-radius: 30%;
     box-shadow: none;
 }
+
+.container{
+    margin-top: 400px;
+    text-align: middle;
+    border: 5px black solid;
+    height: 400px;
+    padding-top: 50px;
+    box-shadow: 30em;
+}
+
+.choice{
+  display: block;
+  margin-bottom: 30px;
+  background-color: rgb(190, 110, 190);  
+  border-radius: 30%;
+  box-shadow: none;
+}
