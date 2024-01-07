@@ -4,6 +4,12 @@ body{
     text-align: center;
 }
 
+p{
+    margin-bottom: 100px;
+    font-weight: bolder;
+    font-size: large;
+}
+
 .title{
     font-weight: bolder;
     font-size: large;
