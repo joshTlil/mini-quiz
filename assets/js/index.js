@@ -6,8 +6,12 @@ var button1;
 var button2;
 var button3;
 var button4;
+var timer;
+var timerElement;
+var timerCount;
 var questionArray = ["What is a variable", "What is an array", "What is a modulus", "What is an object"];
 var answerArray = ["A name that holds a value", "It is an expression", "A theory", "A function"];
+timerCount = 5;
 
 startButton.addEventListener("click", startQuiz);
 
@@ -29,6 +33,9 @@ function startQuiz(){
     button3.setAttribute('id', 'button3');
     button4.setAttribute('class', 'choice');
     button4.setAttribute('id', 'button4');
+    timer = document.createElement("p");
+    timer.setAttribute('class', 'timer-count');
+    timerElement = document.querySelector(".timer-count");
     var textNode = document.createTextNode(answerArray[0]);
     var textNode2 = document.createTextNode(answerArray[1]);
     var textNode3 = document.createTextNode(answerArray[2]);
@@ -39,12 +46,14 @@ function startQuiz(){
     button3.appendChild(textNode3);
     button4.appendChild(textNode4);
     newPar.appendChild(questionText);
+    document.body.appendChild(timer);
     document.body.appendChild(newDiv);
     newDiv.appendChild(newPar);
     newDiv.appendChild(button1);
     newDiv.appendChild(button2);
     newDiv.appendChild(button3);
     newDiv.appendChild(button4);
+    startTimer(timerCount);
 }
 
 function generateQuestion(){
@@ -52,7 +61,7 @@ function generateQuestion(){
 }
 
 function startTimer(counter){
-
+timer.textContent = counter;
 }
 
 function getHighScore(){
