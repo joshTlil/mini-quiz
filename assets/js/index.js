@@ -12,7 +12,7 @@ var timerCount;
 var timerVal;
 var questionArray = ["What is a variable", "What is an array", "What is a modulus", "What is an object"];
 var answerArray = ["A name that holds a value", "It is an expression", "A theory", "A function"];
-timerCount = 5;
+timerCount = 2;
 
 startButton.addEventListener("click", startQuiz);
 
@@ -29,6 +29,7 @@ function startQuiz(){
     timer = document.createElement("p");
 
     newDiv.setAttribute('class', 'container');
+    newPar.setAttribute('id', 'question');
     button1.setAttribute('class', 'choice')
     button1.setAttribute('id', 'button1');
     button2.setAttribute('class', 'choice');
@@ -38,6 +39,7 @@ function startQuiz(){
     button4.setAttribute('class', 'choice');
     button4.setAttribute('id', 'button4');
     timer.setAttribute('class', 'timer-count');
+
 
     timerElement = document.querySelector(".timer-count");
     var textNode = document.createTextNode(answerArray[0]);
@@ -77,11 +79,27 @@ timerVal = setInterval(function(){
     if(counter === 0){
         clearInterval(timerVal);
         timer.textContent = "Game Over";
+        getDelay();
     }
 }, 1000);
+}
 
+function getDelay(){
+    var counter = 2;
+    var timerVal2 = setInterval(function(){
+        counter--;
+        console.log(counter);
+        if(counter === 0){
+            clearInterval(timerVal2);
+            getHighScore();
+        }
+    },1000);
 }
 
 function getHighScore(){
-
+document.getElementById('question').style.visibility = 'hidden';
+document.getElementById('button1').style.visibility = 'hidden';
+document.getElementById('button2').style.visibility = 'hidden';
+document.getElementById('button3').style.visibility = 'hidden';
+document.getElementById('button4').style.visibility = 'hidden';
 }
