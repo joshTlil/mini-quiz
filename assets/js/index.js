@@ -97,9 +97,18 @@ function getDelay(){
 }
 
 function getHighScore(){
-document.getElementById('question').style.visibility = 'hidden';
+// document.getElementById('question').style.visibility = 'hidden';
 document.getElementById('button1').style.visibility = 'hidden';
 document.getElementById('button2').style.visibility = 'hidden';
 document.getElementById('button3').style.visibility = 'hidden';
 document.getElementById('button4').style.visibility = 'hidden';
+
+var textArea = document.createElement('textarea');
+var submit = document.createElement('button');
+var submitNode = document.createTextNode("submit");
+newPar.textContent = "Enter Your Name";
+submit.setAttribute('class', 'text');
+submit.appendChild(submitNode);
+newDiv.appendChild(textArea);
+newDiv.appendChild(submit);
 }
