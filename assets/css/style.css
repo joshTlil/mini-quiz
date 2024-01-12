@@ -10,6 +10,12 @@ p{
     font-size: large;
 }
 
+textarea{
+    margin-bottom: 0px;
+    
+}
+
+
 .title{
     font-weight: bolder;
     font-size: large;
@@ -40,3 +46,4 @@ p{
   border-radius: 30%;
   box-shadow: none;
 }
+
