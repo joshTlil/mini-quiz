@@ -89,7 +89,68 @@ function startQuiz(){
         })
     }
     if(button2.addEventListener){
-        button2
+        button2.addEventListener("click", function(){
+            count++;
+            if(count < 4){
+                if(button2.textContent === "A collection of items stored in memory location"){
+                    console.log("correct");
+                    correct++;
+                    timerCount = 2;
+                    clearInterval(timerVal);
+                    startTimer(timerCount);
+                }else{
+                    console.log("Wrong");
+                }
+                generateQuestion(count);
+                next(count);
+            }
+        })
+    }
+    if(button3.addEventListener){
+        button3.addEventListener("click", function(){
+            count++;
+            if(count < 4){
+                if(button3.textContent === "A Remainder"){
+                    console.log("correct");
+                    correct++;
+                    timerCount = 2;
+                    clearInterval(timerVal);
+                    startTimer(timerCount);
+                }else{
+                    console.log("wrong");
+                }
+                generateQuestion(count);
+                next(count);
+            }
+        })
+    }
+    if(button4.addEventListener){
+        button4.addEventListener("click", function(){
+            count++;
+            if(count < 4){
+                if(button4.textContent === "A collection of data stored as key-value pairs"){
+                    console.log("correct");
+                    correct++;
+                    timerCount = 2;
+                    clearInterval(timerVal);
+                    startTimer(timerCount);
+                }else{
+                    console.log("Wrong");
+                }
+                generateQuestion(count);
+                next(count);
+            }else{
+                if(correct > 1){
+                    newPar.textContent = "YOU WIN!!!";
+                }else{
+                    newPar.textContent = "YOU LOSE!!!";
+                }
+                document.getElementById('button1').style.visibility = 'hidden';
+                document.getElementById('button2').style.visibility = 'hidden';
+                document.getElementById('button3').style.visibility = 'hidden';
+                document.getElementById('button4').style.visibility = 'hidden';
+            }
+        })
     }
     //Start timer
     startTimer(timerCount);
@@ -105,6 +166,18 @@ function next(count){
         button2.textContent = answerArray2[1];
         button3.textContent = answerArray2[2];
         button4.textContent = answerArray2[3];
+    }
+    if(count === 2){
+        button1.textContent = answerArray3[0];
+        button2.textContent = answerArray3[1];
+        button3.textContent = answerArray3[2];
+        button4.textContent = answerArray3[3];
+    }
+    if(count === 3){
+        button1.textContent = answerArray4[0];
+        button2.textContent = answerArray4[1];
+        button3.textContent = answerArray4[2];
+        button4.textContent = answerArray4[3];
     }
 }
 
