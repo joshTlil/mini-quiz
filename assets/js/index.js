@@ -12,9 +12,9 @@ var timerCount;
 var timerVal;
 var questionArray = ["What is a variable", "What is an array", "What is a modulus", "What is an object"];
 var answerArray = ["A name that holds a value", "It is an expression", "A theory", "A function"];
-var answerArray2 = ["Just a list", "It is an expression", "A collection of items stored in memory location", "A function"];
-var answerArray3 = ["A name that holds a value", "It is an expression", "A theory", "A Remainder"];
-var answerArray4 = ["A collection of data stored as key-value pairs", "It is an expression", "A theory", "A function"];
+var answerArray2 = ["Just a list", "A collection of items stored in memory location", "It is an expression", "A function"];
+var answerArray3 = ["A name that holds a value", "It is an expression", "A Remainder", "A Theory"];
+var answerArray4 = ["It is an expression", "It is an expression", "A theory", "A collection of data stored as key-value pairs"];
 var count = 0;
 var correct = 0;
 timerCount = 2;
@@ -83,15 +83,29 @@ function startQuiz(){
                     console.log("wrong");
                     console.log(count);
                 }
+                generateQuestion(count);
+                next(count);
             }
         })
+    }
+    if(button2.addEventListener){
+        button2
     }
     //Start timer
     startTimer(timerCount);
 }
 
-function generateQuestion(){
+function generateQuestion(count){
+newPar.textContent = questionArray[count];
+}
 
+function next(count){
+    if(count === 1){
+        button1.textContent = answerArray2[0];
+        button2.textContent = answerArray2[1];
+        button3.textContent = answerArray2[2];
+        button4.textContent = answerArray2[3];
+    }
 }
 
 function startTimer(counter){
