@@ -17,7 +17,7 @@ var answerArray3 = ["A name that holds a value", "It is an expression", "A Remai
 var answerArray4 = ["It is an expression", "It is an expression", "A theory", "A collection of data stored as key-value pairs"];
 var count = 0;
 var correct = 0;
-timerCount = 2;
+timerCount = 20;
 
 startButton.addEventListener("click", startQuiz);
 
@@ -72,13 +72,13 @@ function startQuiz(){
         button1.addEventListener("click", function(){
             count++;
             if(count < 4){
-                if(button1.textContent === "A name that holds a value"){
+                if(button1.textContent === "A name that holds a value" && count < 2){
                     console.log("correct");
                     console.log(count);
                     correct++;
                     timerCount = 2;
                     clearInterval(timerVal);
-                    startTimer(timerCount);
+                    startTimer(timerCount,correct);
                 }else {
                     console.log("wrong");
                     console.log(count);
@@ -97,7 +97,7 @@ function startQuiz(){
                     correct++;
                     timerCount = 2;
                     clearInterval(timerVal);
-                    startTimer(timerCount);
+                    startTimer(timerCount,correct);
                 }else{
                     console.log("Wrong");
                 }
@@ -115,30 +115,43 @@ function startQuiz(){
                     correct++;
                     timerCount = 2;
                     clearInterval(timerVal);
-                    startTimer(timerCount);
+                    startTimer(timerCount,correct);
                 }else{
                     console.log("wrong");
                 }
                 generateQuestion(count);
                 next(count);
+            }else if(count > 3){
+                clearInterval(timerVal);
+                newPar.textContent = "YOU LOSE!!!";
+                timerCount = 1;
+                startTimer(timerCount,correct);
             }
+            
         })
     }
     if(button4.addEventListener){
         button4.addEventListener("click", function(){
             count++;
+            console.log(count);
             if(count < 4){
                 if(button4.textContent === "A collection of data stored as key-value pairs"){
                     console.log("correct");
                     correct++;
-                    timerCount = 2;
-                    clearInterval(timerVal);
-                    startTimer(timerCount);
+                    // timerCount = 2;
+                    // clearInterval(timerVal);
+                    // startTimer(timerCount);
+                    // if(correct < 3){
+                    //     newPar.textContent = "YOU LOSE!!!";
+                    // }
                 }else{
                     console.log("Wrong");
+                    // if(correct < 3){
+                    //     newPar.textContent = "YOU LOSE!!!";
+                    // }
                 }
-                generateQuestion(count);
-                next(count);
+                // generateQuestion(count);
+                // next(count);
             }else{
                 if(correct > 1){
                     newPar.textContent = "YOU WIN!!!";
@@ -153,7 +166,7 @@ function startQuiz(){
         })
     }
     //Start timer
-    startTimer(timerCount);
+    startTimer(timerCount,correct);
 }
 
 function generateQuestion(count){
@@ -181,7 +194,7 @@ function next(count){
     }
 }
 
-function startTimer(counter){
+function startTimer(counter,correct){
     //Display the first number of the counter
 timer.textContent = counter;
 timerVal = setInterval(function(){
@@ -190,24 +203,24 @@ timerVal = setInterval(function(){
     if(counter === 0){
         clearInterval(timerVal);
         timer.textContent = "Game Over";
-        getDelay();
+        getDelay(correct);
     }
 }, 1000);
 }
 
-function getDelay(){
+function getDelay(correct){
     var counter = 2;
     var timerVal2 = setInterval(function(){
         counter--;
         console.log(counter);
         if(counter === 0){
             clearInterval(timerVal2);
-            getHighScore();
+            getHighScore(correct);
         }
     },1000);
 }
 
-function getHighScore(){
+function getHighScore(correct){
 // document.getElementById('question').style.visibility = 'hidden';
 document.getElementById('button1').style.visibility = 'hidden';
 document.getElementById('button2').style.visibility = 'hidden';
@@ -222,4 +235,13 @@ submit.setAttribute('class', 'text');
 submit.appendChild(submitNode);
 newDiv.appendChild(textArea);
 newDiv.appendChild(submit);
+
+submit.addEventListener("click", function(){
+    let name = textArea.value;
+    let score = correct;
+    let highScore = JSON.parse(localStorage.getItem('highScore')) || [];
+    highScore.push({name, score});
+    localStorage.setItem('highScore', JSON.stringify(highScore));
+    window.location.href = "highScore.html";
+})
 }
